@@ -92,7 +92,7 @@
                     <input type="button" value="搜索" id="type_search" v-on:click="search();">
                 </div>
             </div>
-            <div class="main_container">
+            <div>
                 <table class="pollen_list">
                     <colgroup>
                         <col width="150">
@@ -316,6 +316,7 @@ export default {
             vm.$set(vm.parameters, type, event.target.innerHTML);
         },
         initPage: function (pageData) {
+            debugger;
             let vm = this;
             layui.use('laypage', function () {
                 var laypage = layui.laypage;
@@ -487,7 +488,8 @@ export default {
 .pollen_list td a:hover {
   text-decoration: underline;
 }
-
+</style>
+<style>
 #pollen_list_page {
   text-align: right;
   margin: 10px 0;
@@ -515,5 +517,8 @@ export default {
 #pollen_list_page .layui-laypage .layui-laypage-curr em {
   font-weight: bold;
   font-style: normal !important;
+}
+#pollen_list_page .layui-laypage .layui-laypage-count {
+    border: none;
 }
 </style>
