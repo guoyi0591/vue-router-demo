@@ -324,6 +324,7 @@ export default {
                     elem: 'pollen_list_page',
                     count: pageData.total,
                     limit: pageData.limit,
+                    curr: pageData.page,
                     layout: ['prev', 'page', 'next', 'count'],
                     jump: function (obj, first) {
                         if (!first) {
