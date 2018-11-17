@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="search main_container">
+        <div class="search">
             <div class="search_area">
                 <div class="advanced_search_area">
                     <table>
@@ -14,15 +14,18 @@
                             <tr>
                                 <td>植物名称</td>
                                 <td colspan="3">
-                                    <input type="text" placeholder="请输入植物名称" v-model="pollen.name" />
+                                    <div class="search_input">
+                                        <input type="text" placeholder="请输入植物名称" v-model="pollen.name">
+                                    </div>
                                 </td>
                             </tr>
                             <tr>
                                 <td>所属科属</td>
                                 <td colspan="3">
                                     <template v-for="(lable, index) in lables.family">
-                                        <input type="radio" name="wbws" id="wbws_0" value="0" checked>
-                                        <label for="wbws_0" v-on:click="chooseLable('family', $event);">{{lable}}</label>
+                                        <input v-if="index === 0" type="radio" name="family" :id="'family_'+index" value="0" checked>
+                                        <input v-else type="radio" name="family" :id="'family_'+index" value="0">
+                                        <label :for="'family_'+index" v-on:click="chooseLable('family', $event);">{{lable}}</label>
                                     </template>
                                 </td>
                             </tr>
@@ -273,14 +276,13 @@ export default {
 <style scoped>
 .search {
   overflow: hidden;
-  margin-top: 15px;
+  margin-top: 0;
   position: relative;
   outline: 1px solid #cccccc;
   outline-offset: -1px;
 }
 
 .search_area .search_input {
-  padding: 12px 12px 0;
   line-height: 30px;
   position: relative;
 }
@@ -288,8 +290,8 @@ export default {
 .search_area .search_input:before {
   content: "";
   position: absolute;
-  top: 21px;
-  left: 19px;
+  top: 7px;
+  left: 7px;
   width: 16px;
   height: 16px;
   background: url("data:image/svg+xml,%3Csvg class='icon' viewBox='0 0 1024 1024' xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cdefs%3E%3Cstyle/%3E%3C/defs%3E%3Cpath d='M128.39 126.866c164.054-162.085 430.016-162.085 594.094 0 151.47 149.656 162.938 385.068 34.703 547.88l67.125 66.298c10.938-3.75 22.688-2.047 30.344 5.61l156.375 154.437c11.516 11.422 9.797 31.562-3.89 45.03l-61.907 61.157c-13.625 13.547-34.047 15.266-45.593 3.89L743.297 856.732c-7.719-7.625-9.406-19.234-5.64-30.125l-68.907-68.015C504.728 874.075 275.562 859.2 128.39 713.794c-164.068-162.044-164.068-424.85 0-586.928zm86.641 501.365c116.188 114.797 304.625 114.797 420.797 0 116.203-114.828 116.203-300.943 0-415.781-116.203-114.812-304.61-114.797-420.797 0-116.212 114.806-116.212 300.956 0 415.781zM604.86 243.006c10.313 10.163 10.313 26.538 0 36.694-10.234 10.131-26.859 10.147-37.109 0l.031-.016c-78.772-77.515-205.968-77.515-284.672.016-10.24 10.131-26.896 10.131-37.109 0-10.256-10.14-10.234-26.531 0-36.678 99.125-97.913 259.75-97.913 358.86-.016z' fill='%23BBB'/%3E%3C/svg%3E");
@@ -337,23 +339,8 @@ export default {
   text-align: center;
 }
 
-.search_area .toggle_btn {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.search_area .toggle_btn span {
-  border-radius: 20px;
-  font-size: 14px;
-  background: linear-gradient(to bottom, #fff, #e2e2e2);
-  border: 1px solid #ccc;
-  padding: 5px 20px;
-  cursor: pointer;
-}
-
 .search_area .advanced_search_area {
   background-color: #f0f0f0;
-  padding-left: 12px;
 }
 
 .search_area .advanced_search_area .advanced_search_text {
@@ -386,18 +373,13 @@ export default {
 
 .search_area .advanced_search_area table tr td input[type="radio"] + label {
   font-size: 12px;
-  padding: 3px 10px;
+  padding: 8px 10px;
   cursor: pointer;
+  display:inline-block;
+  width:70px;
+  text-align:center;
 }
-
-.search_area
-  .advanced_search_area
-  table
-  tr
-  td
-  input[type="radio"]:checked
-  + label {
-  font-size: 14px;
+.search_area .advanced_search_area table tr td input[type="radio"]:checked + label {
   background-color: #4faff4;
   color: #ffffff;
 }

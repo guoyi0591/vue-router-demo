@@ -3,7 +3,6 @@
         <!--公用头部、导航-->
         <header class="header main_container">
             <a class="logo" href="index.html"></a>
-            <router-link to="/pollens">花粉图库</router-link>
             <div class="logo_mask"></div>
             <div style="position: absolute;top:0;font-size: 36px;">LOGO预留位置</div>
         </header>
@@ -20,9 +19,9 @@
                     分类导航
                 </div>
                 <ul>
-                    <li><router-link to="/pollens">花粉库</router-link></li>
-                    <li><router-link to="/search">花粉特征查询</router-link></li>
-                    <li><router-link to="/family">植物科属查询</router-link></li>
+                    <li><div class="nav_title"><router-link to="/pollens">花粉库</router-link></div></li>
+                    <li><div class="nav_title"><router-link to="/search">花粉特征查询</router-link></div></li>
+                    <li><div class="nav_title"><router-link to="/family">植物科属查询</router-link></div></li>
                 </ul>
             </div>
             <div class="pic_view">
@@ -117,7 +116,29 @@ a:link, a:visited {
 .nav a:hover {
     text-decoration: underline;
 }
+.nav_title {
+    height: 35px;
+    background-repeat: no-repeat;
+    background-position: 28px center;
+    line-height: 35px;
+    padding-left: 43px;
+    font-size: 14px;
+    cursor: pointer;
+    position: relative;
+}
 
+.nav_title:before {
+    content: '';
+    position: absolute;
+    border-left: 5px solid #666;
+    border-top: 4px solid transparent;
+    border-bottom: 4px solid transparent;
+    top: 50%;
+    transform: translate(-15px, -50%);
+}
+.nav_title a{
+    color: #666;
+}
 .footer {
     background: linear-gradient(to right, #007CD2, #01ACE4);
     text-align: center;
@@ -176,53 +197,6 @@ a:link, a:visited {
 .pic_view #right_iframe{
     width: 100%;
     height: 475px;
-}
-
-.nav_title {
-    height: 35px;
-    background-repeat: no-repeat;
-    background-position: 28px center;
-    line-height: 35px;
-    padding-left: 43px;
-    font-size: 14px;
-    color: #666;
-    cursor: pointer;
-    position: relative;
-}
-
-.nav_title:before {
-    content: '';
-    position: absolute;
-    border-left: 5px solid #666;
-    border-top: 4px solid transparent;
-    border-bottom: 4px solid transparent;
-    top: 50%;
-    transform: translate(-15px, -50%);
-}
-
-.nav_child {
-    background: #AAA;
-    display: none;
-}
-
-.nav_child.active {
-    display: block;
-}
-
-.nav_child_item {
-    height: 25px;
-    line-height: 25px;
-    padding-left: 50px !important;
-}
-
-.nav_child_item a {
-    font-size: 12px;
-    color: #EAEFF3;
-    cursor: pointer;
-}
-
-.nav_child_item a:hover {
-    text-decoration: underline;
 }
 
 .slider {
