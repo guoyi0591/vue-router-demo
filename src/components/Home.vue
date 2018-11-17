@@ -1,21 +1,20 @@
 <template>
     <div class="slider">
-        <ul class="slider_area" style="height: 400px;">
-            <li v-for="pollen in pollens">
-                <div class="image">
-                    <img v-bind:src="pollen.url" />
-                </div>
-                <div v-bind:title="pollen.desc" class="desc els">{{pollen.desc}}</div>
-            </li>
-            <div class="arrow hover prev"></div>
-            <div class="arrow hover next"></div>
-        </ul>
-        <ul class="slider_thumb">
-            <li v-for="pollen in pollens" class="" style="height: 50px; width: 50px;">
-                <img v-bind:src="pollen.url" />
-            </li>
-        </ul>
-        <!---->
+      <ul class="slider_area" @mouseover="stop" @mouseout="play">
+          <template v-if="pollens.length > 0">
+              <li v-for="(image,index) in pollens" :style="activeImageScale(index)">
+                  <div class="image" :style="{backgroundImage: 'url('+image.url+')'}"></div>
+                  <div class="desc els" :title="image.desc">{{ image.desc }}</div>
+              </li>
+          </template>
+          <div class="arrow hover prev" @click="switchImage('prev')"></div>
+          <div class="arrow hover next" @click="switchImage('next')"></div>
+      </ul>
+      <ul class="slider_thumb">
+          <li v-for="(image,index) in pollens" 
+          :style="{backgroundImage: 'url('+image.url+')'}" 
+          :class="{active: index==activeIndex}" @click="activeIndex = index"></li>
+      </ul>
     </div>
 </template>
 
@@ -174,7 +173,42 @@ export default {
                     "url": "http://editerupload.eepw.com.cn/201809/61001537857032.jpg",
                     "images": null
                 }
-            ]
+            ],
+            activeIndex: 0,
+            sliderStatus: null,
+            switchingTime: 3
+        }
+    },
+    computed: {
+        lastImg: function () {
+            return this.pollens.length - 1;
+        },
+        prevImg: function () {
+            return this.activeIndex - 1;
+        },
+        nextImg: function () {
+            return this.activeIndex + 1;
+        }
+    },
+    methods: {
+        activeImageScale: function (index) {
+            if (0 == index)
+                return { marginLeft: -100 * this.activeIndex + '%' }
+        },
+        switchImage: function (type) {
+            if (type == 'prev')
+                this.activeIndex = (this.prevImg < 0) ? this.lastImg : this.prevImg;
+            if (type == 'next')
+                this.activeIndex = (this.nextImg > this.lastImg) ? 0 : this.nextImg;
+        },
+        play: function () {
+            var _this = this;
+            this.sliderStatus = window.setInterval(function () {
+                _this.switchImage('next');
+            }, this.switchingTime * 1000);
+        },
+        stop: function () {
+            window.clearInterval(this.sliderStatus);
         }
     },
     created: function () { // 这里mounted和created生命周期函数区别
@@ -185,6 +219,10 @@ export default {
             .catch(function (error) {
                 console.log(error);
             });
+    },
+    mounted: function () {
+        this.stop();
+        this.play();
     }
 }
 </script>
@@ -392,6 +430,7 @@ a:visited {
 
 .slider_area {
   width: 100%;
+  height: 400px;
   overflow: hidden;
   white-space: nowrap;
   position: relative;
@@ -449,8 +488,8 @@ a:visited {
   position: absolute;
   top: 50%;
   margin-top: -15px;
-  border-top: 3px solid #ffffff;
-  border-left: 3px solid #ffffff;
+  border-top: 3px solid #CCC;
+  border-left: 3px solid #CCC;
   opacity: 0;
   transition: all 0.5s;
 }
@@ -499,6 +538,8 @@ a:visited {
 }
 
 .slider_thumb li {
+  width: 50px;
+  height: 50px;
   margin: 10px;
   display: inline-block;
   background-size: cover;
