@@ -10,11 +10,15 @@
           <div class="arrow hover prev" @click="switchImage('prev')"></div>
           <div class="arrow hover next" @click="switchImage('next')"></div>
       </ul>
-      <ul class="slider_thumb">
+      <div class="slider_thumb_limit">
+        <ul class="slider_thumb">
           <li v-for="(image,index) in pollens" 
-          :style="{backgroundImage: 'url('+image.url+')'}" 
-          :class="{active: index==activeIndex}" @click="activeIndex = index"></li>
-      </ul>
+            :style="{backgroundImage: 'url('+image.url+')'}" 
+            :class="{active: index==activeIndex}" @click="activeIndex = index"></li>
+        </ul>
+        <div class="arrow hover prev" @click="scrollThumb('prev')"></div>
+        <div class="arrow hover next" @click="scrollThumb('next')"></div>
+      </div>
     </div>
 </template>
 
@@ -209,6 +213,13 @@ export default {
         },
         stop: function () {
             window.clearInterval(this.sliderStatus);
+        },
+        scrollThumb:function(type){
+            let vm = this;
+            if (type == 'prev')
+                  vm.$('.slider_thumb').clearQueue().animate({'scrollLeft':'-=300px'},500);
+            if (type == 'next')
+                  vm.$('.slider_thumb').clearQueue().animate({'scrollLeft':'+=300px'},500);
         }
     },
     created: function () { // 这里mounted和created生命周期函数区别
@@ -530,13 +541,43 @@ a:visited {
   font-family: "Microsoft Yahei";
 }
 
+.slider_thumb_limit{
+  overflow:hidden;
+  position: relative;
+}
+
 .slider_thumb {
   width: 100%;
   overflow: hidden;
+  overflow-x:auto;
   white-space: nowrap;
   text-align: center;
+  transform: translateY(20px);
+  margin-top: -20px !important;
+  padding-right:10px !important;
 }
 
+.slider_thumb_limit .arrow {
+  width: 15px;
+  height: 15px;
+  position: absolute;
+  top: 50%;
+  margin-top: -8px;
+  border-top: 3px solid #666;
+  border-left: 3px solid #666;
+  transition: all 0.5s;
+  cursor: pointer;
+}
+
+.slider_thumb_limit .arrow.prev {
+  left: 10px;
+  transform: rotate(-45deg);
+}
+
+.slider_thumb_limit .arrow.next {
+  right: 10px;
+  transform: rotate(135deg);
+}
 .slider_thumb li {
   width: 50px;
   height: 50px;
@@ -552,31 +593,7 @@ a:visited {
 .slider_thumb li:hover,
 .slider_thumb li.active {
   transform: scale(1.1);
-}
-
-.slider_point {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  white-space: nowrap;
-  text-align: center;
-  bottom: 0;
-}
-
-.slider_point li {
-  width: 8px;
-  height: 8px;
-  margin: 5px;
-  border: 2px solid #fff;
-  border-radius: 50%;
-  display: inline-block;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.slider_point li:hover,
-.slider_point li.active {
-  background-color: #ffffff;
+  box-shadow: 0 0 15px rgba(0,0,0,.8) inset;
 }
 
 .els {
