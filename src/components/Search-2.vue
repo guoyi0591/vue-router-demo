@@ -22,11 +22,14 @@
                             <tr>
                                 <td>所属科属</td>
                                 <td colspan="3">
-                                    <template v-for="(lable, index) in lables.family">
-                                        <input v-if="index === 0" type="radio" name="family" :id="'family_'+index" value="0" checked>
-                                        <input v-else type="radio" name="family" :id="'family_'+index" value="0">
-                                        <label :for="'family_'+index" v-on:click="chooseLable('family', $event);">{{lable}}</label>
-                                    </template>
+                                    <div class="item_limit">
+                                        <div class="more" @click="toggleSearchItem($event)"></div>
+                                        <template v-for="(lable, index) in lables.family">
+                                            <input v-if="index === 0" type="radio" name="family" :id="'family_'+index" value="0" checked>
+                                            <input v-else type="radio" name="family" :id="'family_'+index" value="0">
+                                            <label :for="'family_'+index" v-on:click="chooseLable('family', $event);">{{lable}}</label>
+                                        </template>
+                                    </div>
                                 </td>
                             </tr>
                         </tbody>
@@ -268,6 +271,10 @@ export default {
                     }
                 });
             });
+        },
+        toggleSearchItem:function(event){
+            let vm=this;
+            vm.$(event.target).parent().toggleClass('show');
         }
     }
 }
@@ -357,7 +364,6 @@ export default {
 }
 
 .search_area .advanced_search_area table tr td {
-  height: 37px;
   padding: 0 5px;
   border-bottom: 1px dashed #e4e4e4;
 }
@@ -367,7 +373,52 @@ export default {
   font-size: 14px;
   text-align: center;
 }
-
+.search_area .advanced_search_area table tr td .item_limit{
+    overflow:hidden;
+    height:32px;
+    transition: height .2S;
+}
+.search_area .advanced_search_area table tr td .item_limit .more{
+    display:inline-block;
+    float: right;
+    font-size: 12px;
+    line-height:32px;
+    color: #4FAFF4;
+    padding:0 10px 0 25px;
+    cursor: pointer;
+    position: relative;
+}
+.search_area .advanced_search_area table tr td .item_limit .more:before{
+    content: '更多';
+}
+.search_area .advanced_search_area table tr td .item_limit .more:after{
+    content: '';
+    width: 7px;
+    height: 7px;
+    border-top: 1px solid #4faff4;
+    border-right: 1px solid #4faff4;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    transform: rotate(135deg);
+}
+.search_area .advanced_search_area table tr td .item_limit.show{
+    height: auto !important;
+}
+.search_area .advanced_search_area table tr td .item_limit.show .more:before{
+    content: '收起';
+}
+.search_area .advanced_search_area table tr td .item_limit.show .more:after{
+    content: '';
+    width: 7px;
+    height: 7px;
+    border-top: 1px solid #4faff4;
+    border-right: 1px solid #4faff4;
+    position: absolute;
+    top: 14px;
+    left: 10px;
+    transform: rotate(-45deg);
+}
 .search_area .advanced_search_area table tr td input[type="radio"] {
   display: none;
 }

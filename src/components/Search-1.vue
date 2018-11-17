@@ -14,77 +14,101 @@
                             <tr>
                                 <td>极面观形状</td>
                                 <td colspan="3" ref="td-jmgxz">
-                                    <template v-for="(lable, index) in lables.jmgxz">
-                                        <input v-if="index === 0" type="radio" name="jmgxz" :id="'jmgxz_'+index" value="0" checked>
-                                        <input v-else type="radio" name="jmgxz" :id="'jmgxz_'+index" value="0">
-                                        <label :for="'jmgxz_'+index" v-on:click="chooseLable('jmgxz', $event);">{{lable}}</label>
-                                    </template>
+                                    <div class="item_limit">
+                                        <div class="more" @click="toggleSearchItem($event)"></div>
+                                        <template v-for="(lable, index) in lables.jmgxz">
+                                            <input v-if="index === 0" type="radio" name="jmgxz" :id="'jmgxz_'+index" value="0" checked>
+                                            <input v-else type="radio" name="jmgxz" :id="'jmgxz_'+index" value="0">
+                                            <label :for="'jmgxz_'+index" v-on:click="chooseLable('jmgxz', $event);">{{lable}}</label>
+                                        </template>
+                                    </div>
                                 </td>
                             </tr>
                             <tr>
                                 <td>赤道面观形状</td>
                                 <td colspan="3">
-                                    <template v-for="(lable, index) in lables.cdmgxz">
-                                        <input v-if="index === 0" type="radio" name="cdmgxz" :id="'cdmgxz_'+index" value="0" checked>
-                                        <input v-else type="radio" name="cdmgxz" :id="'cdmgxz_'+index" value="0">
-                                        <label :for="'cdmgxz_'+index" v-on:click="chooseLable('cdmgxz', $event);">{{lable}}</label>
-                                    </template>
+                                    <div class="item_limit">
+                                        <div class="more" @click="toggleSearchItem($event)"></div>
+                                        <template v-for="(lable, index) in lables.cdmgxz">
+                                            <input v-if="index === 0" type="radio" name="cdmgxz" :id="'cdmgxz_'+index" value="0" checked>
+                                            <input v-else type="radio" name="cdmgxz" :id="'cdmgxz_'+index" value="0">
+                                            <label :for="'cdmgxz_'+index" v-on:click="chooseLable('cdmgxz', $event);">{{lable}}</label>
+                                        </template>
+                                    </div>
                                 </td>
                             </tr>
                             <tr>
                                 <td>外壁纹饰</td>
                                 <td colspan="3">
-                                    <template v-for="(lable, index) in lables.wbws">
-                                        <input v-if="index === 0" type="radio" name="wbws" :id="'wbws_'+index" value="0" checked>
-                                        <input v-else type="radio" name="wbws" :id="'wbws_'+index" value="0">
-                                        <label :for="'wbws_'+index" v-on:click="chooseLable('wbws', $event);">{{lable}}</label>
-                                    </template>
+                                    <div class="item_limit">
+                                        <div class="more" @click="toggleSearchItem($event)"></div>
+                                        <template v-for="(lable, index) in lables.wbws">
+                                            <input v-if="index === 0" type="radio" name="wbws" :id="'wbws_'+index" value="0" checked>
+                                            <input v-else type="radio" name="wbws" :id="'wbws_'+index" value="0">
+                                            <label :for="'wbws_'+index" v-on:click="chooseLable('wbws', $event);">{{lable}}</label>
+                                        </template>
+                                    </div>
                                 </td>
                             </tr>
                             <tr>
                                 <td>纹饰特征</td>
                                 <td>
-                                    <template v-for="(lable, index) in lables.wstz">
-                                        <input v-if="index === 0" type="radio" name="wstz" :id="'wstz_'+index" value="0" checked>
-                                        <input v-else type="radio" name="wstz" :id="'wstz_'+index" value="0">
-                                        <label :for="'wstz_'+index" v-on:click="chooseLable('wstz', $event);">{{lable}}</label>
-                                    </template>
+                                    <div class="item_limit">
+                                        <div class="more" @click="toggleSearchItem($event)"></div>
+                                        <template v-for="(lable, index) in lables.wstz">
+                                            <input v-if="index === 0" type="radio" name="wstz" :id="'wstz_'+index" value="0" checked>
+                                            <input v-else type="radio" name="wstz" :id="'wstz_'+index" value="0">
+                                            <label :for="'wstz_'+index" v-on:click="chooseLable('wstz', $event);">{{lable}}</label>
+                                        </template>
+                                    </div>
                                 </td>
                                 <td>按皮刺分类</td>
                                 <td>
-                                    <template v-for="(lable, index) in lables.pc">
-                                        <input v-if="index === 0" type="radio" name="pc" :id="'pc_'+index" value="0" checked>
-                                        <input v-else type="radio" name="pc" :id="'pc_'+index" value="0">
-                                        <label :for="'pc_'+index" v-on:click="chooseLable('pc', $event);">{{lable}}</label>
-                                    </template>
+                                    <div class="item_limit">
+                                        <div class="more" @click="toggleSearchItem($event)"></div>
+                                        <template v-for="(lable, index) in lables.pc">
+                                            <input v-if="index === 0" type="radio" name="pc" :id="'pc_'+index" value="0" checked>
+                                            <input v-else type="radio" name="pc" :id="'pc_'+index" value="0">
+                                            <label :for="'pc_'+index" v-on:click="chooseLable('pc', $event);">{{lable}}</label>
+                                        </template>
+                                    </div>
                                 </td>
                             </tr>
                             <tr>
                                 <td>孔（沟）数量</td>
                                 <td colspan="3">
-                                    <template v-for="(lable, index) in lables.kgsl">
-                                        <input v-if="index === 0" type="radio" name="kgsl" :id="'kgsl_'+index" value="0" checked>
-                                        <input v-else type="radio" name="kgsl" :id="'kgsl_'+index" value="0">
-                                        <label :for="'kgsl_'+index" v-on:click="chooseLable('kgsl', $event);">{{lable}}</label>
-                                    </template>
+                                    <div class="item_limit">
+                                        <div class="more" @click="toggleSearchItem($event)"></div>
+                                        <template v-for="(lable, index) in lables.kgsl">
+                                            <input v-if="index === 0" type="radio" name="kgsl" :id="'kgsl_'+index" value="0" checked>
+                                            <input v-else type="radio" name="kgsl" :id="'kgsl_'+index" value="0">
+                                            <label :for="'kgsl_'+index" v-on:click="chooseLable('kgsl', $event);">{{lable}}</label>
+                                        </template>
+                                    </div>
                                 </td>
                             </tr>
                             <tr>
                                 <td>孔（沟）形态特征</td>
                                 <td>
-                                    <template v-for="(lable, index) in lables.kgxttz">
-                                        <input v-if="index === 0" type="radio" name="kgxttz" :id="'kgxttz_'+index" value="0" checked>
-                                        <input v-else type="radio" name="kgxttz" :id="'kgxttz_'+index" value="0">
-                                        <label :for="'kgxttz_'+index" v-on:click="chooseLable('kgxttz', $event);">{{lable}}</label>
-                                    </template>
+                                    <div class="item_limit">
+                                        <div class="more" @click="toggleSearchItem($event)"></div>
+                                        <template v-for="(lable, index) in lables.kgxttz">
+                                            <input v-if="index === 0" type="radio" name="kgxttz" :id="'kgxttz_'+index" value="0" checked>
+                                            <input v-else type="radio" name="kgxttz" :id="'kgxttz_'+index" value="0">
+                                            <label :for="'kgxttz_'+index" v-on:click="chooseLable('kgxttz', $event);">{{lable}}</label>
+                                        </template>
+                                    </div>
                                 </td>
                                 <td>按花量分类</td>
                                 <td>
-                                    <template v-for="(lable, index) in lables.hl">
-                                        <input v-if="index === 0" type="radio" name="hl" :id="'hl_'+index" value="0" checked>
-                                        <input v-else type="radio" name="hl" :id="'hl_'+index" value="0">
-                                        <label :for="'hl_'+index" v-on:click="chooseLable('hl', $event);">{{lable}}</label>
-                                    </template>
+                                    <div class="item_limit">
+                                        <div class="more" @click="toggleSearchItem($event)"></div>
+                                        <template v-for="(lable, index) in lables.hl">
+                                            <input v-if="index === 0" type="radio" name="hl" :id="'hl_'+index" value="0" checked>
+                                            <input v-else type="radio" name="hl" :id="'hl_'+index" value="0">
+                                            <label :for="'hl_'+index" v-on:click="chooseLable('hl', $event);">{{lable}}</label>
+                                        </template>
+                                    </div>
                                 </td>
                             </tr>
                         </tbody>
@@ -335,6 +359,10 @@ export default {
                     }
                 });
             });
+        },
+        toggleSearchItem:function(event){
+            let vm=this;
+            vm.$(event.target).parent().toggleClass('show');
         }
     }
 }
@@ -425,7 +453,6 @@ export default {
 }
 
 .search_area .advanced_search_area table tr td {
-  height: 37px;
   padding: 0 5px;
   border-bottom: 1px dashed #e4e4e4;
 }
@@ -435,7 +462,52 @@ export default {
   font-size: 14px;
   text-align: center;
 }
-
+.search_area .advanced_search_area table tr td .item_limit{
+    overflow:hidden;
+    height:32px;
+    transition: height .2S;
+}
+.search_area .advanced_search_area table tr td .item_limit .more{
+    display:inline-block;
+    float: right;
+    font-size: 12px;
+    line-height:32px;
+    color: #4FAFF4;
+    padding:0 10px 0 25px;
+    cursor: pointer;
+    position: relative;
+}
+.search_area .advanced_search_area table tr td .item_limit .more:before{
+    content: '更多';
+}
+.search_area .advanced_search_area table tr td .item_limit .more:after{
+    content: '';
+    width: 7px;
+    height: 7px;
+    border-top: 1px solid #4faff4;
+    border-right: 1px solid #4faff4;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    transform: rotate(135deg);
+}
+.search_area .advanced_search_area table tr td .item_limit.show{
+    height: auto !important;
+}
+.search_area .advanced_search_area table tr td .item_limit.show .more:before{
+    content: '收起';
+}
+.search_area .advanced_search_area table tr td .item_limit.show .more:after{
+    content: '';
+    width: 7px;
+    height: 7px;
+    border-top: 1px solid #4faff4;
+    border-right: 1px solid #4faff4;
+    position: absolute;
+    top: 14px;
+    left: 10px;
+    transform: rotate(-45deg);
+}
 .search_area .advanced_search_area table tr td input[type="radio"] {
   display: none;
 }
