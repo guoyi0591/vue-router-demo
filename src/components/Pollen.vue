@@ -60,21 +60,13 @@ export default {
             msg: '花粉',
             picView: false,
             picViewSrc: '',
-            pollen: {
-                "id": "1",
-                "name": "青蒿",
-                "desc": "1,青蒿,菊科,三角形,14.1-17.8,16.10±0.38,13.3-17.9,15.09±0.44,椭圆形,13.3-17.9,15.09±0.44,3孔沟,内膜突出,10.0-15.72,12.53±0.61,1.25-4.64,2.61±0.42,2.4-4.01,3.19±0.17,刺状,0.20-0.43,0.30±0.02,0.26-0.48,0.40±0.02,",
-                "url": null,
-                "images": [
-                    "http://editerupload.eepw.com.cn/201809/61001537857032.jpg"
-                ]
-            }
+            pollen: {}
         }
     },
     created: function () {
         this.$http.get('http://localhost:8081/search/pollen', {
             params: {
-                name: this.$route.query.name
+                id: this.$route.query.id
             }
         })
             .then(function (response) {
