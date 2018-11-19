@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="detail main_container">
+        <div class="detail">
             <div class="position"><b>您的位置：</b>XXX>><a href="javascript:void(0);" v-on:click="home();">花粉图库</a>>><span id="pollen_name">{{pollen.name}}</span></div>
             <table>
                 <colgroup>
@@ -43,10 +43,10 @@
                 </tbody>
             </table>
         </div>
-        <div class="picture main_container">
+        <div class="picture">
             <img v-for="image in pollen.images" :src="image" @click="showPicView(image)">
         </div>
-        <div :class="{pic_view:true,show:picView}" @click="picView=false">
+        <div :class="{big_pic_view:true,show:picView}" @click="picView=false">
             <img :src="picViewSrc">
         </div>
     </div>
@@ -137,7 +137,7 @@ export default {
   margin: 5px;
 }
 
-.pic_view {
+.big_pic_view {
   display: none;
   position: fixed;
   top: 0;
@@ -147,11 +147,11 @@ export default {
   background-color: rgba(0, 0, 0, 0.8);
 }
 
-.pic_view.show {
+.big_pic_view.show {
   display: block;
 }
 
-.pic_view img {
+.big_pic_view img {
   position: absolute;
   top: 50%;
   left: 50%;
